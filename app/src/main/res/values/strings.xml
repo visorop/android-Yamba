@@ -7,4 +7,5 @@
     <string name="button_tweet">Tweet</string>
     <string name="hint_status">Whats going on?</string>
     <string name="text_count">200</string>
+
 </resources>

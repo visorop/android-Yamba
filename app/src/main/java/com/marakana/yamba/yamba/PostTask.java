@@ -29,9 +29,9 @@ public class PostTask extends AsyncTask<String, Void, String>{
     @Override
     protected void onPostExecute(String result){
 
-        Context appContext = StatusActivity.getAppContext(); // get app main context through a static getter
+        Context fragmentContext = StatusFragment.getFragmentContext(); // get app main context through a static getter
 
-        Toast toast = Toast.makeText(appContext,result,Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(fragmentContext,result,Toast.LENGTH_LONG);
         toast.show();
     }
 }
