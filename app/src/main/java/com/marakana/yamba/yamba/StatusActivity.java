@@ -1,8 +1,9 @@
 package com.marakana.yamba.yamba;
 
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +15,11 @@ import android.widget.EditText;
 
 public class StatusActivity extends ActionBarActivity {
 
+    private static Context APP_CONTEXT;
+
     private static final String TAG = "StatusActivity";
+    private static final String USERNAME = "student";
+    private static final String PASSWORD = "password";
 
     private EditText editStatus;
     private Button buttonTweet;
@@ -27,6 +32,8 @@ public class StatusActivity extends ActionBarActivity {
                 case R.id.buttonTweet : {
                     String status = editStatus.getText().toString(); //
                     Log.d(TAG, "onClicked with status: " + status);
+
+                    new PostTask().execute(status, USERNAME, PASSWORD);
                 }
             }
             //may add more clicks events here with additional cases
@@ -35,9 +42,14 @@ public class StatusActivity extends ActionBarActivity {
 
     private StatusActivityOnClickListener statusActivityOnClickListener = new StatusActivityOnClickListener();
 
+    public static Context getAppContext() {
+        return APP_CONTEXT;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        APP_CONTEXT = getApplicationContext();
         setContentView(R.layout.activity_status);
 
         this.editStatus = (EditText) this.findViewById(R.id.editStatus);
