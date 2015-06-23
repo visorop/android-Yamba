@@ -1,7 +1,7 @@
 package com.marakana.yamba.yamba;
 
-
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,15 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-
 public class StatusFragment extends Fragment {
 
     private static Context FRAGMENT_CONTEXT;
 
     private static final String TAG = "StatusFragment";
-    private static final String USERNAME = "student";
-    private static final String PASSWORD = "password";
 
     private EditText editStatus;
     private Button buttonTweet;
@@ -33,6 +29,9 @@ public class StatusFragment extends Fragment {
     private int maxCount;
 
     private class StatusActivityOnClickListener implements View.OnClickListener {
+
+        private SharedPreferences prefs;
+
         @Override
         public void onClick(View clickedView) {
             switch(clickedView.getId()) {
@@ -40,7 +39,7 @@ public class StatusFragment extends Fragment {
                     String status = editStatus.getText().toString(); //
                     Log.d(TAG, "onClicked with status: " + status);
 
-                    new PostTask().execute(status, USERNAME, PASSWORD);
+                    new PostTask().execute(status);
                 }
             }
             //may add more clicks events here with additional cases
@@ -105,7 +104,7 @@ public class StatusFragment extends Fragment {
         this.textCount = (TextView) view.findViewById(R.id.textCount);
         this.defaultTextColor = textCount.getTextColors().getDefaultColor();
 
-        Resources res = this.getResources();
+        Resources res = view.getResources();
         this.maxCount = res.getInteger(R.integer.max_text_count);
 
         this.buttonTweet.setOnClickListener(statusActivityOnClickListener);
