@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.marakana.android.yamba.clientlib.YambaClient;
 import com.marakana.android.yamba.clientlib.YambaClientException;
 
-public class PostTask extends AsyncTask<String, Void, String>{
+public class PostTask extends AsyncTask<String, Void, String> {
 
     private static final String TAG = "PostTask";
     private static final String ONSUCCESS = "Successfully sent message.";
@@ -23,17 +23,17 @@ public class PostTask extends AsyncTask<String, Void, String>{
     @Override
     protected String doInBackground(String... params) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(fragmentContext);
-        String userName = prefs.getString("username","");
-        String password = prefs.getString("password","");
+        String userName = prefs.getString("username", "");
+        String password = prefs.getString("password", "");
 
 
-        if(TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)){
-            fragmentContext.startActivity(new Intent(fragmentContext,SettingsActivity.class));
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
+            fragmentContext.startActivity(new Intent(fragmentContext, SettingsActivity.class));
             return "You need to enter username and password!";
         }
 
 
-        YambaClient yambaClient = new YambaClient(userName,password);
+        YambaClient yambaClient = new YambaClient(userName, password);
         try {
             yambaClient.postStatus(params[0]);
             Log.d(TAG, ONSUCCESS);
@@ -43,10 +43,11 @@ public class PostTask extends AsyncTask<String, Void, String>{
             return ONFAILURE;
         }
     }
-    @Override
-    protected void onPostExecute(String result){
 
-        Toast toast = Toast.makeText(fragmentContext,result,Toast.LENGTH_LONG);
+    @Override
+    protected void onPostExecute(String result) {
+
+        Toast toast = Toast.makeText(fragmentContext, result, Toast.LENGTH_LONG);
         toast.show();
     }
 }
