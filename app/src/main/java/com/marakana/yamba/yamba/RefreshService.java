@@ -1,9 +1,10 @@
 package com.marakana.yamba.yamba;
 
 import android.app.IntentService;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
-
+import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,13 +39,33 @@ public class RefreshService extends IntentService {
             return;
         }
         Log.d(TAG, "onStarted");
+
+        DbHelper dbHelper = new DbHelper(this); //
+        SQLiteDatabase db = dbHelper.getWritableDatabase(); //
         YambaClient cloud = new YambaClient(username, password); //
+        ContentValues values = new ContentValues();
+
         try {
             List<YambaClient.Status> timeline = cloud.getTimeline(20); //
+
+
             for (YambaClient.Status status : timeline) { //
                 Log.d(TAG,
                         String.format("%s: %s", status.getUser(),
                                 status.getMessage())); //
+
+                values.clear(); //
+                values.put(StatusContract.Column.ID, status.getId());
+                values.put(StatusContract.Column.USER,
+                        status.getUser());
+                values.put(StatusContract.Column.MESSAGE,
+                        status.getMessage());
+                values.put(StatusContract.Column.CREATED_AT, status
+                        .getCreatedAt().getTime());
+                db.insertWithOnConflict(StatusContract.TABLE, null, values,
+                        SQLiteDatabase.CONFLICT_IGNORE);
+                Log.d(TAG,"Statuses loaded from cloud in database.");
+
             }
         } catch (YambaClientException e) { //
             Log.e(TAG, "Failed to fetch the timeline", e);
