@@ -16,7 +16,7 @@
     <string name="tweet">Tweet</string>
     <string name="refresh">Refresh</string>
     <string name="purge">Purge</string>
-
+    <string name="status_update">Yamba status feed</string>
 
 
 </resources>

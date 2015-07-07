@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
@@ -34,7 +35,29 @@ public class StatusProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        return null;
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables( StatusContract.TABLE );
+        switch (sURIMatcher.match(uri)) {
+            case StatusContract.STATUS_DIR:
+                break;
+            case StatusContract.STATUS_ITEM:
+                qb.appendWhere(StatusContract.Column.ID + "="
+                        + uri.getLastPathSegment());
+                break;
+            default:
+                throw new IllegalArgumentException("Illegal uri: " + uri);
+        }
+        String orderBy = (TextUtils.isEmpty(sortOrder))
+                ? StatusContract.DEFAULT_SORT
+                : sortOrder;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = qb.query(db, projection, selection, selectionArgs,
+                null, null, orderBy);
+// register for uri changes
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        Log.d(TAG, "queried records: "+cursor.getCount());
+        return cursor;
+
     }
 
     @Override

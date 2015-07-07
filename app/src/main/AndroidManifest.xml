@@ -12,17 +12,20 @@
         <service android:name=".RefreshService" />
 
         <activity
-            android:name=".StatusActivity"
-            android:label="@string/title_activity_status"></activity>
-        <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main">
+            android:name="com.marakana.yamba.yamba.StatusActivity"
+            android:label="@string/status_update" >
+            <intent-filter>
+                <action android:name="com.marakana.android.yamba.action.tweet" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- -->
+        <activity android:name="com.marakana.yamba.yamba.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
