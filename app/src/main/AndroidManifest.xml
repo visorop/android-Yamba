@@ -30,6 +30,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.marakana.yamba.yamba.DetailsActivity" >
+        </activity>
+
         <provider
             android:name="com.marakana.yamba.yamba.StatusProvider"
             android:authorities="com.marakana.yamba.yamba.StatusProvider"
