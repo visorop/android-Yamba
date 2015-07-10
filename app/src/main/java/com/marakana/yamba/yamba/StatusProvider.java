@@ -55,7 +55,7 @@ public class StatusProvider extends ContentProvider {
                 null, null, orderBy);
 // register for uri changes
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
-        Log.d(TAG, "queried records: "+cursor.getCount());
+        //Log.d(TAG, "queried records: "+cursor.getCount());
         return cursor;
 
     }
@@ -93,7 +93,7 @@ public class StatusProvider extends ContentProvider {
             getContext().getContentResolver()
                     .notifyChange(uri, null); //
         }
-        db.close();
+        //db.close();
         return ret;
     }
 
