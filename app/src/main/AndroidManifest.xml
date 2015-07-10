@@ -7,9 +7,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_pidgeon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <service android:name=".RefreshService" />
 
         <activity
@@ -51,6 +52,22 @@
             <intent-filter>
                 <action android:name="com.marakana.yamba.yamba.action.NEW_STATUSES" />
             </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.marakana.yamba.yamba.YambaWidget"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name=
+                    "com.marakana.android.yamba.action.NEW_STATUSES" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name=
+                    "android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/yamba_widget" />
         </receiver>
 
     </application>

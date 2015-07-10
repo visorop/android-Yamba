@@ -1,24 +1,23 @@
 <resources>
-    <string name="app_name">Yamba</string>
+    <string name="app_name">ГълъбЧат</string>
     <string name="title_activity_status">StatusActivity</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="button_tweet">Tweet</string>
-    <string name="hint_status">Whats going on?</string>
+
+    <string name="action_settings">настройки на гнездото</string>
+    <string name="button_tweet">погукай</string>
+    <string name="hint_status">Гуууу?</string>
     <string name="text_count">200</string>
-    <string name="username">Username</string>string>
+    <string name="username">Име на гълъба</string>string>
     <string name="username_summary">Provide username for logging into API</string>string>
-    <string name="password">Password</string>string>
+    <string name="password">Комбинация от секретни зърна</string>string>
     <string name="password_summary">Provide password for logging into API</string>string>
-    <string name="interval">Interval</string>string>
+    <string name="interval">Интервал за проверка за гукане</string>string>
     <string name="interval_summary">Interval for refreshing status feed</string>string>
-    <string name="title_activity_settings">Yamba settings</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="tweet">Tweet</string>
-    <string name="refresh">Refresh</string>
-    <string name="purge">Purge</string>
-    <string name="status_update">Yamba status feed</string>
+    <string name="title_activity_settings">Настройки на гнездото</string>
+    <string name="tweet">погукай</string>
+    <string name="refresh">зареди гукания</string>
+    <string name="purge">изчисти гнездото</string>
+    <string name="status_update">Разгукай се!</string>
 
 
 </resources>
