@@ -73,7 +73,11 @@ public class RefreshService extends IntentService {
                     //        SQLiteDatabase.CONFLICT_IGNORE);
                     Log.d(TAG, "Statuses loaded from cloud in database.");
                 }
-
+                if (count > 0) {
+                    sendBroadcast(new Intent(
+                            "com.marakana.yamba.yamba.action.NEW_STATUSES")
+                            .putExtra("count", count)); //
+                }
             }
         } catch (YambaClientException e) { //
             Log.e(TAG, "Failed to fetch the timeline", e);

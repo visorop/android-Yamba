@@ -44,6 +44,15 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <receiver
+            android:name="com.marakana.yamba.yamba.NotificationReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.marakana.yamba.yamba.action.NEW_STATUSES" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
