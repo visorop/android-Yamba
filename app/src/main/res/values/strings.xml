@@ -11,6 +11,8 @@
     <string name="username_summary">Provide username for logging into API</string>string>
     <string name="password">Password</string>string>
     <string name="password_summary">Provide password for logging into API</string>string>
+    <string name="interval">Interval</string>string>
+    <string name="interval_summary">Interval for refreshing status feed</string>string>
     <string name="title_activity_settings">Yamba settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="tweet">Tweet</string>
